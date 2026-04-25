@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bo'Jangles Pub Grill & Pizzeria | Taste the Jazz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obsidian: #1B1B1B;
+            --amber: #E67E22;
+            --pomegranate: #C0392B;
+            --parchment: #FDF5E6;
+        }
+        body {
+            background-color: var(--obsidian);
+            color: var(--parchment);
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .jazz-font { font-family: 'Playfair Display', serif; }
+        
+        .hero-video {
+            background: linear-gradient(rgba(27,27,27,0.7), rgba(27,27,27,0.8)), url('https://images.unsplash.com/photo-1514525253361-bee8a19740c1?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+        .tab-active { border-bottom: 4px solid var(--amber); color: var(--amber); }
+        .bg-obsidian { background-color: var(--obsidian); }
+        .text-amber { color: var(--amber); }
+        .bg-amber { background-color: var(--amber); }
+        .bg-pomegranate { background-color: var(--pomegranate); }
+    </style>
+</head>
+<body class="pb-24">
+
+    <header class="hero-video h-[90vh] flex flex-col items-center justify-center text-center px-4">
+        <img src="https://img.icons8.com/ios-filled/100/E67E22/saxophone.png" alt="Jazz Icon" class="mb-6">
+        <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight">Bo'Jangles</h1>
+        <p class="text-2xl md:text-3xl italic text-amber mb-8">Taste the Jazz in Ndola</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#menu" class="bg-amber text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-orange-600 transition">View Menu</a>
+            <a href="https://wa.me/260970000000?text=Hi%20BoJangles!%20I'd%20like%20to%20order%20food." class="border-2 border-parchment px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Order Now</a>
+        </div>
+    </header>
+
+    <section class="py-12 bg-black border-y border-zinc-800">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold uppercase text-amber">Live This Week</h2>
+                    <p class="text-gray-400">Ndola's Home for Food, Fun & Jazz</p>
+                </div>
+                <span class="hidden md:block text-pomegranate font-bold animate-pulse">● HAPPENING NOW</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800">
+                    <p class="text-amber font-bold">FRIDAY NIGHT JAZZ</p>
+                    <h4 class="text-xl mb-2">Live Performance by Izrael</h4>
+                    <p class="text-sm text-gray-500">20:00 - Late | Table Booking Req.</p>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800">
+                    <p class="text-amber font-bold">SPORTS SATURDAY</p>
+                    <h4 class="text-xl mb-2">EPL: Arsenal vs Man Utd</h4>
+                    <p class="text-sm text-gray-500">16:30 | Big Screen Experience</p>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800">
+                    <p class="text-amber font-bold">SUNDAY FAMILY VIBE</p>
+                    <h4 class="text-xl mb-2">Mega Breakfast Special</h4>
+                    <p class="text-sm text-gray-500">09:00 - 13:00 | Kids Corner Open</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-20 container mx-auto px-4">
+        <h2 class="text-center text-5xl mb-16 italic">The Triple Kitchen</h2>
+        
+        <div class="flex justify-center gap-8 mb-12 overflow-x-auto pb-4">
+            <button onclick="switchMenu('pizza')" id="btn-pizza" class="text-xl font-bold uppercase tracking-tighter tab-active px-4">Wood-Fired Pizza</button>
+            <button onclick="switchMenu('indian')" id="btn-indian" class="text-xl font-bold uppercase tracking-tighter px-4">Authentic Indian</button>
+            <button onclick="switchMenu('pub')" id="btn-pub" class="text-xl font-bold uppercase tracking-tighter px-4">Pub Grills</button>
+        </div>
+
+        <div id="menu-content" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+            </div>
+    </section>
+
+    <section class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4 max-w-2xl">
+            <h2 class="text-4xl text-center mb-8">Reserve Your Table</h2>
+            <form id="bookingForm" class="space-y-4">
+                <input type="text" id="name" placeholder="Name" required class="w-full p-4 bg-obsidian border border-zinc-700 text-white rounded">
+                <select id="guests" class="w-full p-4 bg-obsidian border border-zinc-700 text-white rounded">
+                    <option>2 Guests</option>
+                    <option>4 Guests</option>
+                    <option>6+ Guests (VIP Section)</option>
+                </select>
+                <button type="submit" class="w-full bg-pomegranate py-4 font-bold uppercase tracking-widest hover:bg-red-700 transition">Request via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-zinc-800">
+        <p class="italic text-gray-500">"Keep a song in your soul"</p>
+        <p class="mt-4 font-bold">BO'JANGLES NDOLA</p>
+    </footer>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-obsidian border-t border-zinc-800 grid grid-cols-2 h-20 md:hidden">
+        <a href="tel:+260970000000" class="flex flex-col items-center justify-center border-r border-zinc-800">
+            <i class="fas fa-phone text-amber mb-1"></i>
+            <span class="text-[10px] uppercase font-bold">Call Now</span>
+        </a>
+        <a href="https://wa.me/260970000000" class="flex flex-col items-center justify-center">
+            <i class="fab fa-whatsapp text-green-500 mb-1"></i>
+            <span class="text-[10px] uppercase font-bold">WhatsApp Order</span>
+        </a>
+    </nav>
+
+    <script>
+        const menus = {
+            pizza: [
+                { name: "Chicken Supreme", desc: "Wood-fired with fresh veggies", price: "K145" },
+                { name: "Bo'Jangles Special", desc: "The works. Everything on it.", price: "K160" }
+            ],
+            indian: [
+                { name: "Tandoori Bream", desc: "Authentic local fish, Indian spices", price: "K185" },
+                { name: "Chicken Lollipops", desc: "Spicy, crispy, iconic appetizer", price: "K95" }
+            ],
+            pub: [
+                { name: "Mega Breakfast", desc: "The ultimate morning cure", price: "K120" },
+                { name: "Grilled T-Bone", desc: "500g of prime Zambian beef", price: "K210" }
+            ]
+        };
+
+        function switchMenu(type) {
+            const container = document.getElementById('menu-content');
+            const btns = ['btn-pizza', 'btn-indian', 'btn-pub'];
+            
+            btns.forEach(b => document.getElementById(b).classList.remove('tab-active'));
+            document.getElementById('btn-' + type).classList.add('tab-active');
+
+            container.innerHTML = menus[type].map(item => `
+                <div class="border-b border-zinc-800 pb-4">
+                    <div class="flex justify-between font-bold text-xl mb-1">
+                        <span>${item.name}</span>
+                        <span class="text-amber">${item.price}</span>
+                    </div>
+                    <p class="text-sm text-gray-500 italic">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize Menu
+        switchMenu('pizza');
+
+        // WhatsApp Booking Handler
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const guests = document.getElementById('guests').value;
+            const text = `Hi Bo'Jangles! I'd like to book a table for ${name} for ${guests}.`;
+            window.open(`https://wa.me/260970000000?text=${encodeURIComponent(text)}`);
+        });
+    </script>
+</body>
+</html>
