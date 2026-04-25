@@ -19,13 +19,46 @@
             color: var(--parchment);
             font-family: 'Inter', sans-serif;
         }
-        h1, h2, h3, .jazz-font { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, h4, .jazz-font { font-family: 'Playfair Display', serif; }
         
-        .hero-video {
-            background: linear-gradient(rgba(27,27,27,0.7), rgba(27,27,27,0.8)), url('https://images.unsplash.com/photo-1514525253361-bee8a19740c1?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
+        /* Fixed Hero/Slideshow background height */
+        .hero-slideshow {
+            background-color: black;
+            height: 90vh; /* Consistent height for slideshow and hero overlay */
+            width: 100%;
+            overflow: hidden;
+            position: relative;
         }
+
+        .slideshow-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1; /* Images stay behind the hero text overlay */
+        }
+
+        .slideshow-image.active {
+            opacity: 1;
+        }
+
+        /* The hero content sits on top of the slideshow */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(27,27,27,0.7), rgba(27,27,27,0.8));
+            z-index: 2; /* Text on top */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
         .tab-active { border-bottom: 4px solid var(--amber); color: var(--amber); }
         .bg-obsidian { background-color: var(--obsidian); }
         .text-amber { color: var(--amber); }
@@ -35,13 +68,22 @@
 </head>
 <body class="pb-24">
 
-    <header class="hero-video h-[90vh] flex flex-col items-center justify-center text-center px-4">
-        <img src="https://img.icons8.com/ios-filled/100/E67E22/saxophone.png" alt="Jazz Icon" class="mb-6">
-        <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight">Bo'Jangles</h1>
-        <p class="text-2xl md:text-3xl italic text-amber mb-8">Taste the Jazz in Ndola</p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#menu" class="bg-amber text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-orange-600 transition">View Menu</a>
-            <a href="https://wa.me/260970000000?text=Hi%20BoJangles!%20I'd%20like%20to%20order%20food." class="border-2 border-parchment px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Order Now</a>
+    <header class="hero-slideshow">
+        
+        <img src="https://images.unsplash.com/photo-1514525253361-bee8a19740c1?auto=format&fit=crop&q=80&w=1920" alt="Jazz Saxophone" class="slideshow-image active">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1920" alt="Wood-Fired Pizza" class="slideshow-image">
+        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=1920" alt="Authentic Tandoori Bream" class="slideshow-image">
+        <img src="https://images.unsplash.com/photo-1541532138244-32383eaa6b43?auto=format&fit=crop&q=80&w=1920" alt="Lively Bar Scene" class="slideshow-image">
+        <img src="https://images.unsplash.com/photo-1598511757337-fe2cafc31ba0?auto=format&fit=crop&q=80&w=1920" alt="Chicken Lollipops" class="slideshow-image">
+
+        <div class="hero-overlay">
+            <img src="https://img.icons8.com/ios-filled/100/E67E22/saxophone.png" alt="Jazz Icon" class="mb-6">
+            <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight">Bo'Jangles</h1>
+            <p class="text-2xl md:text-3xl italic text-amber mb-8">Taste the Jazz in Ndola</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#menu" class="bg-amber text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-orange-600 transition">View Menu</a>
+                <a href="https://wa.me/260970000000?text=Hi%20BoJangles!%20I'd%20like%20to%20order%20food." class="border-2 border-parchment px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Order Now</a>
+            </div>
         </div>
     </header>
 
@@ -78,9 +120,9 @@
         <h2 class="text-center text-5xl mb-16 italic">The Triple Kitchen</h2>
         
         <div class="flex justify-center gap-8 mb-12 overflow-x-auto pb-4">
-            <button onclick="switchMenu('pizza')" id="btn-pizza" class="text-xl font-bold uppercase tracking-tighter tab-active px-4">Wood-Fired Pizza</button>
-            <button onclick="switchMenu('indian')" id="btn-indian" class="text-xl font-bold uppercase tracking-tighter px-4">Authentic Indian</button>
-            <button onclick="switchMenu('pub')" id="btn-pub" class="text-xl font-bold uppercase tracking-tighter px-4">Pub Grills</button>
+            <button onclick="switchMenu('pizza')" id="btn-pizza" class="text-xl font-bold uppercase tracking-tighter tab-active px-4 whitespace-nowrap">Wood-Fired Pizza</button>
+            <button onclick="switchMenu('indian')" id="btn-indian" class="text-xl font-bold uppercase tracking-tighter px-4 whitespace-nowrap">Authentic Indian</button>
+            <button onclick="switchMenu('pub')" id="btn-pub" class="text-xl font-bold uppercase tracking-tighter px-4 whitespace-nowrap">Pub Grills</button>
         </div>
 
         <div id="menu-content" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
@@ -107,7 +149,7 @@
         <p class="mt-4 font-bold">BO'JANGLES NDOLA</p>
     </footer>
 
-    <nav class="fixed bottom-0 left-0 right-0 bg-obsidian border-t border-zinc-800 grid grid-cols-2 h-20 md:hidden">
+    <nav class="fixed bottom-0 left-0 right-0 bg-obsidian border-t border-zinc-800 grid grid-cols-2 h-20 md:hidden z-50">
         <a href="tel:+260970000000" class="flex flex-col items-center justify-center border-r border-zinc-800">
             <i class="fas fa-phone text-amber mb-1"></i>
             <span class="text-[10px] uppercase font-bold">Call Now</span>
@@ -119,6 +161,26 @@
     </nav>
 
     <script>
+        // --- Slideshow Logic ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slideshow-image');
+        const numSlides = slides.length;
+
+        function nextSlide() {
+            // Remove active class from current image
+            slides[currentSlide].classList.remove('active');
+            
+            // Increment index (loop back to start if necessary)
+            currentSlide = (currentSlide + 1) % numSlides;
+            
+            // Add active class to new image
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // --- Menu Logic ---
         const menus = {
             pizza: [
                 { name: "Chicken Supreme", desc: "Wood-fired with fresh veggies", price: "K145" },
@@ -155,7 +217,7 @@
         // Initialize Menu
         switchMenu('pizza');
 
-        // WhatsApp Booking Handler
+        // --- WhatsApp Booking Handler ---
         document.getElementById('bookingForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('name').value;
